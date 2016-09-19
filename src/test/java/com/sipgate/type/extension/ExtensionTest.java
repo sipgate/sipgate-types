@@ -23,4 +23,15 @@ public class ExtensionTest
 		assertThat((W) Extension.parse("1234567w0").get(), isA(W.class));
 		assertThat((V) Extension.parse("1234567v0").get(), isA(V.class));
 	}
+
+	@Test
+	public void testApiUsage() throws Exception
+	{
+//		final Extension build = Extension.build("1000000", ExtensionType.V, "2");
+		final Extension build = Extension.parse("1234567w12").get();
+
+		System.out.println(Extension.getV("1000000", "321"));
+
+		System.out.println(build);
+	}
 }

@@ -1,6 +1,11 @@
 package com.sipgate.type.extension;
 
-public class W extends Extension
-{
+import static com.sipgate.type.extension.ExtensionType.W;
 
+public final class W extends Extension
+{
+	W(String masterSipid, String id)
+	{
+		super(masterSipid, W, id);
+	}
 }
