@@ -1,19 +1,29 @@
 package com.sipgate.type.extension;
 
+import com.sipgate.type.user.MasterSipid;
+
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.text.MessageFormat.format;
+
 public abstract class Extension
 {
-	private final String masterSipid;
+	private final MasterSipid masterSipid;
 	private final ExtensionType type;
 	private final String id;
 
+	public Extension(MasterSipid masterSipid, ExtensionType type, String id)
+	{
+		this.masterSipid = masterSipid;
+		this.type = type;
+		this.id = id;
+	}
+
 	public Extension(String masterSipid, ExtensionType type, String id)
 	{
-		super();
-		this.masterSipid = masterSipid;
+		this.masterSipid = MasterSipid.of(masterSipid);
 		this.type = type;
 		this.id = id;
 	}
@@ -22,7 +32,7 @@ public abstract class Extension
 		return type;
 	}
 
-	public String getMasterSipid()
+	public MasterSipid getMasterSipid()
 	{
 		return masterSipid;
 	}
@@ -72,6 +82,6 @@ public abstract class Extension
 	@Override
 	public String toString()
 	{
-		return masterSipid + type.getKey()  + id;
+		return format("{0}{1}{2}", masterSipid, type.getKey(), id);
 	}
 }
