@@ -1,5 +1,8 @@
 package com.sipgate.type.user;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import static java.text.MessageFormat.format;
 
 /**
@@ -31,5 +34,17 @@ public class User
 	public String toString()
 	{
 		return format("{0} ({1})", masterSipid, domain);
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		return EqualsBuilder.reflectionEquals(this, obj, false);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return HashCodeBuilder.reflectionHashCode(this, false);
 	}
 }
