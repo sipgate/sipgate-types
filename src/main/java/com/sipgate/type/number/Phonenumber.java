@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class E164Number
+public class Phonenumber
 {
 	private final PhoneNumber number;
 
@@ -21,7 +21,7 @@ public class E164Number
 	static
 	{
 		try (
-				final InputStream input = E164Number.class.getResourceAsStream("/onkz");
+				final InputStream input = Phonenumber.class.getResourceAsStream("/onkz");
 				final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(input));)
 		{
 			String line;
@@ -37,19 +37,19 @@ public class E164Number
 		}
 	}
 
-	public E164Number(PhoneNumber number)
+	public Phonenumber(PhoneNumber number)
 	{
 		this.number = number;
 	}
 
-	public static E164Number parse(String number)
+	public static Phonenumber parse(String number)
 	{
 		try
 		{
 			final PhoneNumberUtil utils = PhoneNumberUtil.getInstance();
 			final PhoneNumber phonenumber = utils.parse(sanitize(number), "DE");
 
-			return new E164Number(phonenumber);
+			return new Phonenumber(phonenumber);
 		}
 		catch (final NumberParseException e)
 		{
@@ -122,9 +122,9 @@ public class E164Number
 	@Override
 	public boolean equals(Object other)
 	{
-		if (other instanceof E164Number)
+		if (other instanceof Phonenumber)
 		{
-			return ((E164Number) other).getE164().equals(getE164());
+			return ((Phonenumber) other).getE164().equals(getE164());
 		}
 
 		return false;

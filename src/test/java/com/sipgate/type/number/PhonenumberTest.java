@@ -2,11 +2,11 @@ package com.sipgate.type.number;
 
 import org.junit.Test;
 
-import static com.sipgate.type.number.E164Number.parse;
+import static com.sipgate.type.number.Phonenumber.parse;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class E164NumberTest
+public class PhonenumberTest
 {
 
 	@Test
