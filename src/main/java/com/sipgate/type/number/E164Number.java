@@ -33,7 +33,7 @@ public class E164Number
 		}
 		catch (final IOException e)
 		{
-			throw new RuntimeException("Cannot initialize ONKZ databse from resource '/onkz'");
+			throw new RuntimeException("Cannot initialize ONKZ database from resource '/onkz'");
 		}
 	}
 
@@ -53,7 +53,7 @@ public class E164Number
 		}
 		catch (final NumberParseException e)
 		{
-			throw new IllegalArgumentException("Cannot parse {} to e164 format");
+			throw new IllegalArgumentException("Cannot parse {} to e164 format", e);
 		}
 	}
 
@@ -77,9 +77,62 @@ public class E164Number
 		return PhoneNumberUtil.getInstance().format(number, PhoneNumberFormat.NATIONAL).replaceAll("^\\+", "");
 	}
 
+	public String getE164()
+	{
+		return PhoneNumberUtil.getInstance().format(number, PhoneNumberFormat.E164).replaceAll("^\\+", "");
+	}
+
+	public String getCountryCode()
+	{
+		return String.valueOf(number.getCountryCode());
+	}
+
+	public String getAreaCode()
+	{
+		final String nationalSignificantNumber = PhoneNumberUtil.getInstance().getNationalSignificantNumber(number);
+		final int length = PhoneNumberUtil.getInstance().getLengthOfNationalDestinationCode(number);
+
+		if (length > 0)
+		{
+			return String.valueOf(nationalSignificantNumber.substring(0, length));
+		}
+
+		return "";
+	}
+
+	public String getSubscriberNumber()
+	{
+		final String nationalSignificantNumber = PhoneNumberUtil.getInstance().getNationalSignificantNumber(number);
+		final int length = PhoneNumberUtil.getInstance().getLengthOfNationalDestinationCode(number);
+
+		if (length > 0)
+		{
+			return String.valueOf(nationalSignificantNumber.substring(length));
+		}
+
+		return "";
+	}
+
 	@Override
 	public String toString()
 	{
-		return PhoneNumberUtil.getInstance().format(number, PhoneNumberFormat.E164).replaceAll("^\\+", "");
+		return getE164();
+	}
+
+	@Override
+	public boolean equals(Object other)
+	{
+		if (other instanceof E164Number)
+		{
+			return ((E164Number) other).getE164().equals(getE164());
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return getE164().hashCode();
 	}
 }
