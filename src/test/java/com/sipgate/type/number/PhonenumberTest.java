@@ -98,6 +98,24 @@ public class PhonenumberTest
 		assertThat(parseSave("02074228400", UNKNOWN), hasProperty("present", is(false)));
 	}
 
+	@Test
+	public void testFetchingAreaCodeFromBritishNumber() throws Exception
+	{
+		assertThat(parse("02074228400", CO_UK).getAreaCode(), is("20"));
+	}
+
+	@Test
+	public void testFetchingCountryCodeFromBritishNumber() throws Exception
+	{
+		assertThat(parse("02074228400", CO_UK).getCountryCode(), is("44"));
+	}
+
+	@Test
+	public void testFetchingSubscriberNumber() throws Exception
+	{
+		assertThat(parse("02074228400", CO_UK).getSubscriberNumber(), is("74228400"));
+	}
+
 	@Test(expected=IllegalArgumentException.class)
 	public void testParsingNumberWithUnknownLocal() throws Exception
 	{
