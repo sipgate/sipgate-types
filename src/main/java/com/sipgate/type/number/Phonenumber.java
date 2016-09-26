@@ -1,9 +1,9 @@
 package com.sipgate.type.number;
 
-import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.sipgate.type.user.Domain;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,6 +11,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+
+import static com.sipgate.type.user.Domain.DE;
+import static java.text.MessageFormat.format;
 
 public abstract class Phonenumber
 {
@@ -42,34 +46,55 @@ public abstract class Phonenumber
 		this.number = number;
 	}
 
-	public static Phonenumber parse(String number)
+	public static Optional<Phonenumber> parseSave(String number)
 	{
-		try
-		{
-			final PhoneNumberUtil utils = PhoneNumberUtil.getInstance();
-			final PhoneNumber phonenumber = utils.parse(sanitize(number), "DE");
-
-			return new GermanPhonenumber(phonenumber);
-		}
-		catch (final NumberParseException e)
-		{
-			throw new IllegalArgumentException("Cannot parse {} to e164 format", e);
-		}
+		return parseSave(number, DE);
 	}
 
-	private static String sanitize(String number)
+	public static Phonenumber parse(String number)
 	{
-		String sanitized;
+		return parse(number, DE);
+	}
 
-		if ((number.startsWith("49") && (number.length() > 10)))
+	public static Phonenumber parse(String number, Domain domain)
+	{
+		if (domain == null)
 		{
-			sanitized = "+" + number;
+			throw new IllegalArgumentException("Invalid localization given: NULL");
 		}
-		else
+	
+		final Optional<Phonenumber> result = parseSave(number, domain);
+	
+		if (result.isPresent())
 		{
-			sanitized = number;
+			return result.get();
 		}
-		return sanitized;
+	
+		throw new IllegalArgumentException(format("Cannot parse {0} to a valid british telephone number", number));
+	
+	}
+
+	public static Optional<Phonenumber> parseSave(String number, Domain domain)
+	{
+		if (domain == null)
+		{
+			return Optional.empty();
+		}
+
+		switch (domain)
+		{
+			case CO_UK:
+
+				return BritishPhonenumber.parseFrom(number);
+
+			case DE:
+
+				return GermanPhonenumber.parseFrom(number);
+
+			default:
+
+				return Optional.empty();
+		}
 	}
 
 	public String toLocal()

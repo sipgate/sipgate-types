@@ -3,7 +3,11 @@ package com.sipgate.type.number;
 import org.junit.Test;
 
 import static com.sipgate.type.number.Phonenumber.parse;
+import static com.sipgate.type.number.Phonenumber.parseSave;
+import static com.sipgate.type.user.Domain.CO_UK;
+import static com.sipgate.type.user.Domain.UNKNOWN;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.hasProperty;
 import static org.junit.Assert.assertThat;
 
 public class PhonenumberTest
@@ -56,6 +60,32 @@ public class PhonenumberTest
 	@Test
 	public void testEquals() throws Exception
 	{
-		assertThat(parse("00492089939152"), is(parse("02089939152")));
+		assertThat(parse("02089939152").toString(), is("492089939152"));
+	}
+
+	@Test
+	public void testParsingBritishNumber() throws Exception
+	{
+		assertThat(parse("442074228400", CO_UK).toString(), is("442074228400"));
+		assertThat(parse("02074228400", CO_UK).toString(), is("442074228400"));
+		assertThat(parse("02074228400", CO_UK).toLocal(), is("020 7422 8400"));
+	}
+
+	@Test
+	public void testBritishNumberToLocal() throws Exception
+	{
+		assertThat(parse("02074228400", CO_UK).toLocal(), is("020 7422 8400"));
+	}
+
+	@Test()
+	public void testExceptionSaveParsingNumberWithUnknownLocal() throws Exception
+	{
+		assertThat(parseSave("02074228400", UNKNOWN), hasProperty("present", is(false)));
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testParsingNumberWithUnknownLocal() throws Exception
+	{
+		parse("02074228400", UNKNOWN);
 	}
 }
