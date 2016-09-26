@@ -24,9 +24,39 @@ public class E164NumberTest
 	}
 
 	@Test
-	public void testName() throws Exception
+	public void testGetCountryCode() throws Exception
+	{
+		assertThat(parse("02089939152").getCountryCode(), is("49"));
+		assertThat(parse("04922579").getCountryCode(), is("49"));
+		assertThat(parse("020656254").getCountryCode(), is("49"));
+	}
+
+	@Test
+	public void testGetAreaCode() throws Exception
+	{
+		assertThat(parse("02089939152").getAreaCode(), is("208"));
+		assertThat(parse("04922579").getAreaCode(), is("4922"));
+		assertThat(parse("020656254").getAreaCode(), is("2065"));
+	}
+
+	@Test
+	public void testGetSubscriberNumber() throws Exception
+	{
+		assertThat(parse("02089939152").getSubscriberNumber(), is("9939152"));
+		assertThat(parse("04922579").getSubscriberNumber(), is("579"));
+		assertThat(parse("020656254").getSubscriberNumber(), is("6254"));
+	}
+
+	@Test
+	public void testToLocal() throws Exception
 	{
 		assertThat(parse("02089939152").toLocal(), is("0208 9939152"));
 		assertThat(parse("04922579").toLocal(), is("04922 579"));
+	}
+
+	@Test
+	public void testEquals() throws Exception
+	{
+		assertThat(parse("00492089939152"), is(parse("02089939152")));
 	}
 }
