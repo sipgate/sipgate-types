@@ -1,4 +1,4 @@
-package com.sipgate.type.number;
+package com.sipgate.type.carrier;
 
 public enum Carrier
 {
