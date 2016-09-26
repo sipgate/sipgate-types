@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Phonenumber
+public abstract class Phonenumber
 {
 	private final PhoneNumber number;
 
@@ -49,7 +49,7 @@ public class Phonenumber
 			final PhoneNumberUtil utils = PhoneNumberUtil.getInstance();
 			final PhoneNumber phonenumber = utils.parse(sanitize(number), "DE");
 
-			return new Phonenumber(phonenumber);
+			return new GermanPhonenumber(phonenumber);
 		}
 		catch (final NumberParseException e)
 		{
