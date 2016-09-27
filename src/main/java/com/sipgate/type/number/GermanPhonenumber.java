@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class GermanPhonenumber extends Phonenumber
 {
-	public static Optional<Phonenumber> parseFrom(String number)
+	public static Optional<Phonenumber> of(String number)
 	{
 		try
 		{

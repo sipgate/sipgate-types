@@ -46,35 +46,35 @@ public abstract class Phonenumber
 		this.number = number;
 	}
 
-	public static Optional<Phonenumber> parseSave(String number)
+	public static Optional<Phonenumber> parseSafe(String number)
 	{
-		return parseSave(number, DE);
+		return parseSafe(number, DE);
 	}
 
 	public static Phonenumber parse(String number)
 	{
-		return parse(number, DE);
+		return of(number, DE);
 	}
 
-	public static Phonenumber parse(String number, Domain domain)
+	public static Phonenumber of(String number, Domain domain)
 	{
 		if (domain == null)
 		{
 			throw new IllegalArgumentException("Invalid localization given: NULL");
 		}
-	
-		final Optional<Phonenumber> result = parseSave(number, domain);
-	
+
+		final Optional<Phonenumber> result = parseSafe(number, domain);
+
 		if (result.isPresent())
 		{
 			return result.get();
 		}
-	
-		throw new IllegalArgumentException(format("Cannot parse {0} to a valid british telephone number", number));
-	
+
+		throw new IllegalArgumentException(format("Cannot parse {0} to a valid telephone number", number));
+
 	}
 
-	public static Optional<Phonenumber> parseSave(String number, Domain domain)
+	public static Optional<Phonenumber> parseSafe(String number, Domain domain)
 	{
 		if (domain == null)
 		{
@@ -85,11 +85,11 @@ public abstract class Phonenumber
 		{
 			case CO_UK:
 
-				return BritishPhonenumber.parseFrom(number);
+				return BritishPhonenumber.of(number);
 
 			case DE:
 
-				return GermanPhonenumber.parseFrom(number);
+				return GermanPhonenumber.of(number);
 
 			default:
 
