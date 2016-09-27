@@ -13,7 +13,7 @@ public class BritishPhonenumber extends Phonenumber
 		super(number);
 	}
 
-	static Optional<Phonenumber> of(String number)
+	static Optional<Phonenumber> parse(String number)
 	{
 		try
 		{

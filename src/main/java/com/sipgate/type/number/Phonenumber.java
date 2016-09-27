@@ -16,6 +16,17 @@ import java.util.Optional;
 import static com.sipgate.type.user.Domain.DE;
 import static java.text.MessageFormat.format;
 
+/**
+ * Represents any phonenumber and is a convenient object to grant valid phonenumbers and ass them pass phonenumbers in a
+ * typesafe way. <br>
+ * Phonenumber objects can be instantiated using several static buider methods:
+ * <li>{@link #of(String)}</li>
+ * <li>{@link #of(String, Domain)}</li>
+ * <li>{@link #parseSafe(String)}</li>
+ * <li>{@link #parseSafe(String, Domain)}</li>
+ *
+ * TODO: Should implement Serializable
+ */
 public abstract class Phonenumber
 {
 	private final PhoneNumber number;
@@ -46,12 +57,20 @@ public abstract class Phonenumber
 		this.number = number;
 	}
 
-	public static Optional<Phonenumber> parseSafe(String number)
-	{
-		return parseSafe(number, DE);
-	}
-
-	public static Phonenumber parse(String number)
+	/**
+	 * Builds a {@link Phonenumber}-instance by parsing a given String representation. <br>
+	 * Example: <br>
+	 * <code>Phonenumber.of("021155555555");</code> returns a Phonenumber instance representating
+	 * the given number.
+	 *
+	 * @param number String representation of a valid phonenumber. The String can be formatted in local notation or
+	 *            e164.
+	 * @return Phonenumber object representing the given input.
+	 *
+	 * @throws IllegalArgumentException if the given String cannot be parsed to a {@link Phonenumber}. Use
+	 *             {@link #parseSafe(String)} if this behaviour is inconvenient.
+	 */
+	public static Phonenumber of(String number)
 	{
 		return of(number, DE);
 	}
@@ -71,7 +90,11 @@ public abstract class Phonenumber
 		}
 
 		throw new IllegalArgumentException(format("Cannot parse {0} to a valid telephone number", number));
+	}
 
+	public static Optional<Phonenumber> parseSafe(String number)
+	{
+		return parseSafe(number, DE);
 	}
 
 	public static Optional<Phonenumber> parseSafe(String number, Domain domain)
@@ -85,11 +108,11 @@ public abstract class Phonenumber
 		{
 			case CO_UK:
 
-				return BritishPhonenumber.of(number);
+				return BritishPhonenumber.parse(number);
 
 			case DE:
 
-				return GermanPhonenumber.of(number);
+				return GermanPhonenumber.parse(number);
 
 			default:
 

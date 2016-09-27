@@ -8,13 +8,13 @@ import java.util.Optional;
 
 public class GermanPhonenumber extends Phonenumber
 {
-	public static Optional<Phonenumber> of(String number)
+	static Optional<Phonenumber> parse(String number)
 	{
 		try
 		{
 			final PhoneNumberUtil utils = PhoneNumberUtil.getInstance();
 			final PhoneNumber phonenumber = utils.parse(sanitizeGermanNumber(number), "DE");
-	
+
 			return Optional.of(new GermanPhonenumber(phonenumber));
 		}
 		catch (final NumberParseException e)
@@ -26,7 +26,7 @@ public class GermanPhonenumber extends Phonenumber
 	private static String sanitizeGermanNumber(String number)
 	{
 		String sanitized;
-	
+
 		if ((number.startsWith("49") && (number.length() > 10)))
 		{
 			sanitized = "+" + number;
