@@ -48,7 +48,7 @@ public abstract class Phonenumber
 		}
 		catch (final IOException e)
 		{
-			throw new RuntimeException("Cannot initialize ONKZ database from resource '/onkz'");
+			throw new RuntimeException("Cannot initialize ONKZ database from resource '/onkz'", e);
 		}
 	}
 
