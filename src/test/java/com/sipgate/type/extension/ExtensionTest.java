@@ -30,7 +30,7 @@ public class ExtensionTest
 //		final Extension build = Extension.build("1000000", ExtensionType.V, "2");
 		final Extension build = Extension.parse("1234567w12").get();
 
-		System.out.println(Extension.getV("1000000", "321"));
+		System.out.println(Extension.buildV("1000000", "321"));
 
 		System.out.println(build);
 	}

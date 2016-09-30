@@ -47,14 +47,79 @@ public abstract class Extension
 		return type.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension getV(String masterSipid, String extensionId)
+	public static Extension buildA(String masterSipid, String extensionId)
+	{
+		return ExtensionType.A.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildC(String masterSipid, String extensionId)
+	{
+		return ExtensionType.C.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildE(String masterSipid, String extensionId)
+	{
+		return ExtensionType.E.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildF(String masterSipid, String extensionId)
+	{
+		return ExtensionType.F.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildG(String masterSipid, String extensionId)
+	{
+		return ExtensionType.G.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildH(String masterSipid, String extensionId)
+	{
+		return ExtensionType.H.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildI(String masterSipid, String extensionId)
+	{
+		return ExtensionType.I.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildQ(String masterSipid, String extensionId)
+	{
+		return ExtensionType.Q.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildR(String masterSipid, String extensionId)
+	{
+		return ExtensionType.R.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildS(String masterSipid, String extensionId)
+	{
+		return ExtensionType.S.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildT(String masterSipid, String extensionId)
+	{
+		return ExtensionType.T.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildV(String masterSipid, String extensionId)
 	{
 		return ExtensionType.V.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension getW(String masterSipid, String extensionId)
+	public static Extension buildW(String masterSipid, String extensionId)
 	{
 		return ExtensionType.W.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildX(String masterSipid, String extensionId)
+	{
+		return ExtensionType.X.buildExtension(masterSipid, extensionId);
+	}
+
+	public static Extension buildY(String masterSipid, String extensionId)
+	{
+		return ExtensionType.Y.buildExtension(masterSipid, extensionId);
 	}
 
 	public static Optional<Extension> parse(String extension)
