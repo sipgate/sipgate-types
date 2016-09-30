@@ -4,6 +4,102 @@ import java.util.Optional;
 
 public enum ExtensionType
 {
+	A("a")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new A(masterSipid, extensionId);
+		}
+	},
+	C("c")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new C(masterSipid, extensionId);
+		}
+	},
+	E("e")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new E(masterSipid, extensionId);
+		}
+	},
+	F("f")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new F(masterSipid, extensionId);
+		}
+	},
+	G("g")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new G(masterSipid, extensionId);
+		}
+	},
+	H("h")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new H(masterSipid, extensionId);
+		}
+	},
+	I("i")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new I(masterSipid, extensionId);
+		}
+	},
+	P("p")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new P(masterSipid, extensionId);
+		}
+	},
+	Q("q")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new Q(masterSipid, extensionId);
+		}
+	},
+	R("r")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new R(masterSipid, extensionId);
+		}
+	},
+	S("s")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new S(masterSipid, extensionId);
+		}
+	},
+	T("t")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new T(masterSipid, extensionId);
+		}
+	},
 	V("v")
 	{
 		@Override
@@ -12,13 +108,28 @@ public enum ExtensionType
 			return new V(masterSipid, extensionId);
 		}
 	},
-
 	W("w")
 	{
 		@Override
 		public Extension buildExtension(String masterSipid, String extensionId)
 		{
 			return new W(masterSipid, extensionId);
+		}
+	},
+	X("x")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new X(masterSipid, extensionId);
+		}
+	},
+	Y("y")
+	{
+		@Override
+		public Extension buildExtension(String masterSipid, String extensionId)
+		{
+			return new Y(masterSipid, extensionId);
 		}
 	};
 
