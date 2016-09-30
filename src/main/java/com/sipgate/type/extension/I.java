@@ -1,6 +1,6 @@
 package com.sipgate.type.extension;
 
-import static com.sipgate.type.extension.ExtensionType.V;
+import static com.sipgate.type.extension.ExtensionType.I;
 
 public final class I extends Extension
 {
@@ -8,7 +8,7 @@ public final class I extends Extension
 
 	I(String masterSipid, String id)
 	{
-		super(masterSipid, V, id);
+		super(masterSipid, I, id);
 	}
 
 	@Override
