@@ -18,7 +18,7 @@ public class ExtensionTypeTest
 	}
 
 	@Test
-	private void testToString()
+	public void testToString()
 	{
 		for (final ExtensionType type : ExtensionType.values())
 		{
