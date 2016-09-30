@@ -2,6 +2,7 @@ package com.sipgate.type.extension;
 
 import org.junit.Test;
 
+import static java.text.MessageFormat.format;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -13,7 +14,7 @@ public class ExtensionTypeTest
 	{
 		for (final ExtensionType type : ExtensionType.values())
 		{
-			assertThat("Checking type mapping for type " + type + ":", type.buildExtension("1234567", "1").getClass().getSimpleName(), is(type.toString()));
+			assertThat(format("Checking type mapping for type {0}:", type), type.buildExtension("1234567", "1").getClass().getSimpleName(), is(type.toString()));
 		}
 	}
 
@@ -22,7 +23,7 @@ public class ExtensionTypeTest
 	{
 		for (final ExtensionType type : ExtensionType.values())
 		{
-			assertThat("Checking toString for type " + type + ":", type.buildExtension("1234567", "1").toString(), is("1234567" + type.toString().toLowerCase() + "1"));
+			assertThat(format("Checking toString for type {0}:", type), type.buildExtension("1234567", "1").toString(), is(format("1234567{0}1", type.toString().toLowerCase())));
 		}
 	}
 }

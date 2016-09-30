@@ -28,19 +28,7 @@ public abstract class Extension
 		this.id = id;
 	}
 
-	public ExtensionType getType() {
-		return type;
-	}
-
-	public MasterSipid getMasterSipid()
-	{
-		return masterSipid;
-	}
-
-	public String getId()
-	{
-		return id;
-	}
+	public abstract String getDescription();
 
 	public static Extension build(String masterSipid, ExtensionType type, String extensionId)
 	{
@@ -144,11 +132,23 @@ public abstract class Extension
 		return Optional.ofNullable(type.get().buildExtension(masterSipid, extensionId));
 	}
 
+	public ExtensionType getType() {
+		return type;
+	}
+
+	public MasterSipid getMasterSipid()
+	{
+		return masterSipid;
+	}
+
+	public String getId()
+	{
+		return id;
+	}
+
 	@Override
 	public String toString()
 	{
 		return format("{0}{1}{2}", masterSipid, type.getKey(), id);
 	}
-
-	public abstract String getDescription();
 }
