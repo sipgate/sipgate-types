@@ -8,29 +8,6 @@ import java.util.regex.Pattern;
 
 import static java.text.MessageFormat.format;
 
-/*
-+------------------------------------------------------------------------------------------------------+--------+
-| description                                                                                          | prefix |
-+------------------------------------------------------------------------------------------------------+--------+
-| Application Extension For CallAPID                                                                   | a      |
-| A conference room                                                                                    | c      |
-| SIP-Client-Extension.                                                                                | e      |
-| Webfax-Extension, in+out                                                                             | f      |
-| Callgroup-Extension                                                                                  | g      |
-| Enables IVR                                                                                          | h      |
-| Extension for SIM                                                                                    | i      |
-| Group-Extension for a person (a Webuser in most cases)                                               | p      |
-| Allows customer to enable incoming queue on groups for                                               | q      |
-| Groucall-Announcement-extension for sipgate.de only. Technically the same as callthrough, but with d | r      |
-| SMS-Extension                                                                                        | s      |
-| Trunking extension for custom PBXes (10 channels)                                                    | t      |
-| Voicemail-Extension                                                                                  | v      |
-| Webuser-Extension, can be admin or not                                                               | w      |
-| Generic External phone extension, e.g. for mobiles                                                   | x      |
-| y(i) for mobile extensions                                                                           | y      |
-+------------------------------------------------------------------------------------------------------+--------+
-*/
-
 public abstract class Extension
 {
 	private final MasterSipid masterSipid;
@@ -107,4 +84,6 @@ public abstract class Extension
 	{
 		return format("{0}{1}{2}", masterSipid, type.getKey(), id);
 	}
+
+	public abstract String getDescription();
 }
