@@ -1,12 +1,14 @@
 package com.sipgate.type.extension;
 
+import com.sipgate.type.user.MasterSipid;
+
 import static com.sipgate.type.extension.ExtensionType.I;
 
 public final class I extends Extension
 {
 	static final String DESCRIPTION = "Extension for SIM";
 
-	I(String masterSipid, String id)
+	I(MasterSipid masterSipid, String id)
 	{
 		super(masterSipid, I, id);
 	}

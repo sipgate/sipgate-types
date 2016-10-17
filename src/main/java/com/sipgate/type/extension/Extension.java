@@ -30,82 +30,82 @@ public abstract class Extension
 
 	public abstract String getDescription();
 
-	public static Extension build(String masterSipid, ExtensionType type, String extensionId)
+	public static Extension build(MasterSipid masterSipid, ExtensionType type, String extensionId)
 	{
 		return type.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildA(String masterSipid, String extensionId)
+	public static Extension buildA(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.A.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildC(String masterSipid, String extensionId)
+	public static Extension buildC(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.C.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildE(String masterSipid, String extensionId)
+	public static Extension buildE(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.E.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildF(String masterSipid, String extensionId)
+	public static Extension buildF(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.F.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildG(String masterSipid, String extensionId)
+	public static Extension buildG(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.G.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildH(String masterSipid, String extensionId)
+	public static Extension buildH(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.H.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildI(String masterSipid, String extensionId)
+	public static Extension buildI(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.I.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildQ(String masterSipid, String extensionId)
+	public static Extension buildQ(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.Q.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildR(String masterSipid, String extensionId)
+	public static Extension buildR(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.R.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildS(String masterSipid, String extensionId)
+	public static Extension buildS(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.S.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildT(String masterSipid, String extensionId)
+	public static Extension buildT(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.T.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildV(String masterSipid, String extensionId)
+	public static Extension buildV(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.V.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildW(String masterSipid, String extensionId)
+	public static Extension buildW(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.W.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildX(String masterSipid, String extensionId)
+	public static Extension buildX(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.X.buildExtension(masterSipid, extensionId);
 	}
 
-	public static Extension buildY(String masterSipid, String extensionId)
+	public static Extension buildY(MasterSipid masterSipid, String extensionId)
 	{
 		return ExtensionType.Y.buildExtension(masterSipid, extensionId);
 	}
@@ -127,12 +127,20 @@ public abstract class Extension
 		}
 
 		final String extensionId = matcher.group(3);
-		final String masterSipid = matcher.group(1);
+		final String masterSipidKey = matcher.group(1);
 
-		return Optional.ofNullable(type.get().buildExtension(masterSipid, extensionId));
+		final Optional<MasterSipid> masterSipid = MasterSipid.parse(masterSipidKey);
+
+		if (masterSipid.isPresent())
+		{
+			return Optional.of(masterSipid.get().deriveExtension(type.get(), extensionId));
+		}
+
+		return Optional.empty();
 	}
 
-	public ExtensionType getType() {
+	public ExtensionType getType()
+	{
 		return type;
 	}
 

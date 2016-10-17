@@ -1,5 +1,7 @@
 package com.sipgate.type.extension;
 
+import com.sipgate.type.user.MasterSipid;
+
 import java.util.Optional;
 
 public enum ExtensionType
@@ -7,7 +9,7 @@ public enum ExtensionType
 	A("a")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new A(masterSipid, extensionId);
 		}
@@ -15,7 +17,7 @@ public enum ExtensionType
 	C("c")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new C(masterSipid, extensionId);
 		}
@@ -23,7 +25,7 @@ public enum ExtensionType
 	E("e")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new E(masterSipid, extensionId);
 		}
@@ -31,7 +33,7 @@ public enum ExtensionType
 	F("f")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new F(masterSipid, extensionId);
 		}
@@ -39,7 +41,7 @@ public enum ExtensionType
 	G("g")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new G(masterSipid, extensionId);
 		}
@@ -47,7 +49,7 @@ public enum ExtensionType
 	H("h")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new H(masterSipid, extensionId);
 		}
@@ -55,7 +57,7 @@ public enum ExtensionType
 	I("i")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new I(masterSipid, extensionId);
 		}
@@ -63,7 +65,7 @@ public enum ExtensionType
 	P("p")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new P(masterSipid, extensionId);
 		}
@@ -71,7 +73,7 @@ public enum ExtensionType
 	Q("q")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new Q(masterSipid, extensionId);
 		}
@@ -79,7 +81,7 @@ public enum ExtensionType
 	R("r")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new R(masterSipid, extensionId);
 		}
@@ -87,7 +89,7 @@ public enum ExtensionType
 	S("s")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new S(masterSipid, extensionId);
 		}
@@ -95,7 +97,7 @@ public enum ExtensionType
 	T("t")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new T(masterSipid, extensionId);
 		}
@@ -103,7 +105,7 @@ public enum ExtensionType
 	V("v")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new V(masterSipid, extensionId);
 		}
@@ -111,7 +113,7 @@ public enum ExtensionType
 	W("w")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new W(masterSipid, extensionId);
 		}
@@ -119,7 +121,7 @@ public enum ExtensionType
 	X("x")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new X(masterSipid, extensionId);
 		}
@@ -127,7 +129,7 @@ public enum ExtensionType
 	Y("y")
 	{
 		@Override
-		public Extension buildExtension(String masterSipid, String extensionId)
+		public Extension buildExtension(MasterSipid masterSipid, String extensionId)
 		{
 			return new Y(masterSipid, extensionId);
 		}
@@ -140,7 +142,7 @@ public enum ExtensionType
 		this.key = key;
 	}
 
-	abstract Extension buildExtension(String masterSipid, String extensionId);
+	abstract Extension buildExtension(MasterSipid masterSipid, String extensionId);
 
 	public String getKey()
 	{

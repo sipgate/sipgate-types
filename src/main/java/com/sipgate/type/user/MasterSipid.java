@@ -1,5 +1,10 @@
 package com.sipgate.type.user;
 
+import com.sipgate.type.extension.Extension;
+import com.sipgate.type.extension.ExtensionType;
+
+import java.util.Optional;
+
 import static java.text.MessageFormat.format;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
@@ -27,6 +32,18 @@ public class MasterSipid
 		return new MasterSipid(input);
 	}
 
+	public static Optional<MasterSipid> parse(String masterSipid)
+	{
+		final String input = trimToEmpty(masterSipid);
+
+		if (invalid(input))
+		{
+			return Optional.empty();
+		}
+
+		return Optional.of(new MasterSipid(input));
+	}
+
 	private static boolean invalid(String masterSipid)
 	{
 		return ! masterSipid.matches("^\\d{7}$");
@@ -42,6 +59,11 @@ public class MasterSipid
 	public String getKey()
 	{
 		return masterSipid;
+	}
+
+	public Extension deriveExtension(ExtensionType type, String id)
+	{
+		return Extension.build(this, type, id);
 	}
 
 	@Override

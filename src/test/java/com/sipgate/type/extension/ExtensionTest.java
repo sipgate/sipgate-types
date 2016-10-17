@@ -1,5 +1,6 @@
 package com.sipgate.type.extension;
 
+import com.sipgate.type.user.MasterSipid;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -14,7 +15,8 @@ public class ExtensionTest
 	{
 		assertThat(Extension.parse("1234567").isPresent(), is(false));
 		assertThat(Extension.parse("1234567v").isPresent(), is(false));
-		assertThat(Extension.parse("1234567a0").isPresent(), is(false));
+		assertThat(Extension.parse("1234567a0").isPresent(), is(true));
+		assertThat(Extension.parse("12345678a0").isPresent(), is(false));
 	}
 
 	@Test
@@ -30,7 +32,7 @@ public class ExtensionTest
 //		final Extension build = Extension.build("1000000", ExtensionType.V, "2");
 		final Extension build = Extension.parse("1234567w12").get();
 
-		System.out.println(Extension.buildV("1000000", "321"));
+		System.out.println(Extension.buildV(MasterSipid.of("1000000"), "321"));
 
 		System.out.println(build);
 	}
