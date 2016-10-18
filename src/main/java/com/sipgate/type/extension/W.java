@@ -1,5 +1,7 @@
 package com.sipgate.type.extension;
 
+import com.sipgate.type.user.MasterSipid;
+
 import static com.sipgate.type.extension.ExtensionType.W;
 
 public final class W extends Extension
@@ -7,7 +9,7 @@ public final class W extends Extension
 	static final String DESCRIPTION = "Webuser-Extension, can be admin or not";
 
 
-	W(String masterSipid, String id)
+	W(MasterSipid masterSipid, String id)
 	{
 		super(masterSipid, W, id);
 	}

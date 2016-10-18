@@ -1,5 +1,7 @@
 package com.sipgate.type.extension;
 
+import com.sipgate.type.user.MasterSipid;
+
 import static com.sipgate.type.extension.ExtensionType.S;
 
 public final class S extends Extension
@@ -7,7 +9,7 @@ public final class S extends Extension
 	static final String DESCRIPTION = "SMS-Extension";
 
 
-	S(String masterSipid, String id)
+	S(MasterSipid masterSipid, String id)
 	{
 		super(masterSipid, S, id);
 	}
