@@ -14,6 +14,16 @@ public class User
 	private final MasterSipid masterSipid;
 	private final Domain domain;
 
+	public static User of(MasterSipid masterSipid, Domain domain)
+	{
+		return new User(masterSipid, domain);
+	}
+
+	public static User of(String masterSipid, String domain)
+	{
+		return new User(MasterSipid.of(masterSipid), Domain.parse(domain));
+	}
+
 	public User(MasterSipid masterSipid, Domain domain)
 	{
 		this.masterSipid = masterSipid;
