@@ -1,7 +1,9 @@
 package com.sipgate.type.user;
 
+import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
 
+import static org.apache.commons.lang3.SerializationUtils.deserialize;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -43,5 +45,15 @@ public class MasterSipidTest
 	public void testInstantiationFailsOnTooShortInput() throws Exception
 	{
 		MasterSipid.of("123456");
+	}
+
+	@Test
+	public void testSerialization() throws Exception
+	{
+		final MasterSipid masterSipid = MasterSipid.of("2030302");
+
+		final byte[] bytes = SerializationUtils.serialize(masterSipid);
+
+		assertThat(deserialize(bytes), is(masterSipid));
 	}
 }

@@ -2,6 +2,8 @@ package com.sipgate.type.user;
 
 import com.sipgate.type.extension.Extension;
 import com.sipgate.type.extension.ExtensionType;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.io.Serializable;
 import java.util.Optional;
@@ -78,12 +80,12 @@ public class MasterSipid implements Serializable
 	@Override
 	public int hashCode()
 	{
-		return masterSipid.hashCode();
+		return HashCodeBuilder.reflectionHashCode(this, false);
 	}
 
 	@Override
 	public boolean equals(Object that)
 	{
-		return masterSipid.equals(that);
+		return EqualsBuilder.reflectionEquals(this, that, false);
 	}
 }
