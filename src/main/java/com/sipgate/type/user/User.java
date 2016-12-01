@@ -3,13 +3,15 @@ package com.sipgate.type.user;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.io.Serializable;
+
 import static java.text.MessageFormat.format;
 
 /**
  * Convenience class bundling {@link MasterSipid} and {@link Domain}
  * as a lot of old daemons couple these values extremely strong.
  */
-public class User
+public class User implements Serializable
 {
 	private final MasterSipid masterSipid;
 	private final Domain domain;
