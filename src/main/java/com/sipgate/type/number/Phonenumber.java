@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -27,7 +28,7 @@ import static java.text.MessageFormat.format;
  *
  * TODO: Should implement Serializable
  */
-public abstract class Phonenumber
+public abstract class Phonenumber implements Serializable
 {
 	private final PhoneNumber number;
 

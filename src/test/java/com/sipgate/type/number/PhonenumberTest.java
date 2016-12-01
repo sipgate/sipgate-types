@@ -1,6 +1,7 @@
 package com.sipgate.type.number;
 
 import com.sipgate.type.user.Domain;
+import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
 
 import static com.sipgate.type.number.Phonenumber.of;
@@ -120,5 +121,16 @@ public class PhonenumberTest
 	public void testParsingNumberWithUnknownLocal() throws Exception
 	{
 		of("02074228400", UNKNOWN);
+	}
+
+	@Test
+	public void testSerialization() throws Exception
+	{
+		final Phonenumber number = Phonenumber.of("491796249000");
+
+		final byte[] bytes = SerializationUtils.serialize(number);
+
+		assertThat(SerializationUtils.deserialize(bytes), is(number));
+
 	}
 }
