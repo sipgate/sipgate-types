@@ -1,6 +1,7 @@
 package com.sipgate.type.extension;
 
 import com.sipgate.type.user.MasterSipid;
+import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -27,13 +28,15 @@ public class ExtensionTest
 	}
 
 	@Test
-	public void testApiUsage() throws Exception
+	public void testSerialization() throws Exception
 	{
-//		final Extension build = Extension.build("1000000", ExtensionType.V, "2");
-		final Extension build = Extension.parse("1234567w12").get();
+		for (final ExtensionType type : ExtensionType.values())
+		{
+			final Extension extension = MasterSipid.of("2030302").deriveExtension(type, "10");
 
-		System.out.println(Extension.buildV(MasterSipid.of("1000000"), "321"));
+			final byte[] bytes = SerializationUtils.serialize(extension);
 
-		System.out.println(build);
+			assertThat(SerializationUtils.deserialize(bytes), is(extension));
+		}
 	}
 }

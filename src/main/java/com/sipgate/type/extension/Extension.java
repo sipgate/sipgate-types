@@ -1,14 +1,17 @@
 package com.sipgate.type.extension;
 
 import com.sipgate.type.user.MasterSipid;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.io.Serializable;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.text.MessageFormat.format;
 
-public abstract class Extension
+public abstract class Extension implements Serializable
 {
 	private final MasterSipid masterSipid;
 	private final ExtensionType type;
@@ -158,5 +161,17 @@ public abstract class Extension
 	public String toString()
 	{
 		return format("{0}{1}{2}", masterSipid, type.getKey(), id);
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		return EqualsBuilder.reflectionEquals(this, obj, false);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return HashCodeBuilder.reflectionHashCode(this, false);
 	}
 }
