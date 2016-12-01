@@ -3,16 +3,19 @@ package com.sipgate.type.user;
 import com.sipgate.type.extension.Extension;
 import com.sipgate.type.extension.ExtensionType;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 import static java.text.MessageFormat.format;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
-public class MasterSipid
+public class MasterSipid implements Serializable
 {
 	/**
 	 * Convenient way to build a new MasterSipid instance.
 	 * The given input will be validated and result in an {@link IllegalArgumentException} if the check fails.
+	 *
+	 * MasterSipid is serializable, a json serializer/deserializer will be provided.
 	 *
 	 * @param masterSipid String representation of a mastersipid.
 	 *
