@@ -142,6 +142,12 @@ public abstract class Extension implements Serializable
 		return Optional.empty();
 	}
 
+	public static boolean isA(final String extension, final ExtensionType extensionType)
+	{
+		final Optional<Extension> maybeExtension = Extension.parse(extension);
+		return maybeExtension.isPresent() && maybeExtension.get().getType().equals(extensionType);
+	}
+
 	public ExtensionType getType()
 	{
 		return type;

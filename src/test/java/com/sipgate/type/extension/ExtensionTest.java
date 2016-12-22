@@ -4,9 +4,14 @@ import com.sipgate.type.user.MasterSipid;
 import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 
 public class ExtensionTest
 {
@@ -38,5 +43,20 @@ public class ExtensionTest
 
 			assertThat(SerializationUtils.deserialize(bytes), is(extension));
 		}
+	}
+
+	@Test
+	public void testIsA() {
+		Arrays.stream(ExtensionType.values())
+				.map(extensionType -> Extension.build(MasterSipid.of("1234567"), extensionType, "1"))
+				.forEach(extension -> assertTrue(Extension.isA(extension.toString(), extension.getType())));
+
+		Arrays.stream(ExtensionType.values())
+				.map(extensionType -> Extension.build(MasterSipid.of("1234567"), extensionType, "ww"))
+				.forEach(extension -> assertFalse(Extension.isA(extension.toString(), extension.getType())));
+
+		Arrays.stream(ExtensionType.values())
+				.map(extensionType -> Extension.build(MasterSipid.of("1234567"), extensionType, "-1"))
+				.forEach(extension -> assertFalse(Extension.isA(extension.toString(), extension.getType())));
 	}
 }
