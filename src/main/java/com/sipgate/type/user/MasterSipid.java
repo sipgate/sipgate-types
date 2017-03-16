@@ -33,6 +33,20 @@ public class MasterSipid implements Serializable {
 		return new MasterSipid(input);
 	}
 
+	/**
+	 * allows RestEasy automatic parameter unmarshalling.
+	 * This just wraps {@link #of(String masterSipid) of()}.
+	 *
+	 * MasterSipid is serializable, a json serializer/deserializer will be provided.
+	 *
+	 * @param masterSipid String representation of a mastersipid.
+	 * @return An MasterSipid instance
+	 * @throws IllegalArgumentException in case of any invalid input that doesn't
+	 */
+	public static MasterSipid fromString(String masterSipid) {
+		return MasterSipid.of(masterSipid);
+	}
+
 	public static Optional<MasterSipid> parse(String masterSipid) {
 		final String input = trimToEmpty(masterSipid);
 
