@@ -93,6 +93,10 @@ public abstract class Phonenumber implements Serializable
 		throw new IllegalArgumentException(format("Cannot parse {0} to a valid telephone number", number));
 	}
 
+	public static Phonenumber fromString(String phonenumber) {
+		return Phonenumber.of(phonenumber);
+	}
+
 	public static Optional<Phonenumber> parseSafe(String number)
 	{
 		return parseSafe(number, DE);
