@@ -34,7 +34,7 @@ public class SessionId {
 		this.tos = tos;
 	}
 
-	public SessionId(final String encoded) throws Exception {
+	public SessionId(final String encoded) throws DecoderException {
 		final String decoded = decode(encoded);
 		final String[] split = decoded.split("\\$");
 		this.id = split[2];
