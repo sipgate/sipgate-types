@@ -34,9 +34,13 @@ public class SessionId {
 		this.tos = tos;
 	}
 
-	public SessionId(final String encoded) throws DecoderException {
+	public SessionId(final String encoded) {
 		final String decoded = decode(encoded);
 		final String[] split = decoded.split("\\$");
+		if (split.length < 4) {
+			throw new IllegalArgumentException("Could not parse encoded sessionId");
+		}
+
 		this.id = split[2];
 		this.owner = split[3];
 		this.tos = split[1];
@@ -75,8 +79,8 @@ public class SessionId {
 		return String.valueOf(Hex.encodeHex(encoded)).toUpperCase();
 	}
 
-	private String decode(final String encoded) throws DecoderException {
-		byte[] encodedBytes = Hex.decodeHex(encoded.toLowerCase().toCharArray());
+	private String decode(final String encoded) {
+		byte[] encodedBytes = decodeHex(encoded);
 		byte[] decodedBytes = new byte[encodedBytes.length];
 
 		for (int i = 0; i < encodedBytes.length; i++) {
@@ -85,5 +89,13 @@ public class SessionId {
 		}
 
 		return new String(decodedBytes, StandardCharsets.ISO_8859_1);
+	}
+
+	private byte[] decodeHex(String encoded) {
+		try {
+			return Hex.decodeHex(encoded.toLowerCase().toCharArray());
+		} catch (DecoderException e) {
+			return encoded.getBytes();
+		}
 	}
 }
