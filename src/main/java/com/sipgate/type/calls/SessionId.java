@@ -1,6 +1,8 @@
 package com.sipgate.type.calls;
 
 import java.nio.charset.StandardCharsets;
+
+import com.sipgate.type.extension.Extension;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 
@@ -25,10 +27,10 @@ public class SessionId {
 			.getBytes(StandardCharsets.ISO_8859_1);
 
 	private final String id;
-	private final String owner;
+	private final Extension owner;
 	private final String tos;
 
-	public SessionId(final String id, final String owner, final String tos) {
+	public SessionId(final String id, final Extension owner, final String tos) {
 		this.id = id;
 		this.owner = owner;
 		this.tos = tos;
@@ -42,7 +44,7 @@ public class SessionId {
 		}
 
 		this.id = split[2];
-		this.owner = split[3];
+		this.owner = Extension.parse(split[3]).orElseThrow(() -> new IllegalArgumentException("Could not parse Extension"));
 		this.tos = split[1];
 	}
 
@@ -50,7 +52,7 @@ public class SessionId {
 		return id;
 	}
 
-	public String getOwner() {
+	public Extension getOwner() {
 		return owner;
 	}
 
@@ -62,9 +64,9 @@ public class SessionId {
 		return encode(this.id, this.owner, this.tos);
 	}
 
-	private String encode(final String id, final String owner, final String tos) {
+	private String encode(final String id, final Extension owner, final String tos) {
 		String combinedId =
-			Integer.toHexString(id.length() + owner.length() + tos.length() + 2) + "$" + tos + "$" + id
+			Integer.toHexString(id.length() + owner.toString().length() + tos.length() + 2) + "$" + tos + "$" + id
 				+ "$"
 				+ owner;
 
