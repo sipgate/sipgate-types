@@ -1,22 +1,19 @@
 package com.sipgate.type.extension;
 
-import com.sipgate.type.user.MasterSipid;
-
 import static com.sipgate.type.extension.ExtensionType.X;
 
-public final class X extends Extension
-{
+import com.sipgate.type.user.MasterSipid;
+
+public final class X extends Extension {
 	static final String DESCRIPTION = "Generic External phone extension, e.g. for mobiles";
 
 
-	X(MasterSipid masterSipid, String id)
-	{
+	X(MasterSipid masterSipid, String id) {
 		super(masterSipid, X, id);
 	}
 
 	@Override
-	public String getDescription()
-	{
+	public String getDescription() {
 		return DESCRIPTION;
 	}
 }

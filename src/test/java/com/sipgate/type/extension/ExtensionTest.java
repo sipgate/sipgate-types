@@ -1,24 +1,21 @@
 package com.sipgate.type.extension;
 
-import com.sipgate.type.user.MasterSipid;
-import org.apache.commons.lang3.SerializationUtils;
-import org.junit.Test;
-
-import java.util.Arrays;
-
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import com.sipgate.type.user.MasterSipid;
+import java.util.Arrays;
+import org.apache.commons.lang3.SerializationUtils;
+import org.junit.Test;
 
-public class ExtensionTest
-{
+
+public class ExtensionTest {
 
 	@Test
-	public void testParseExtensionHandlesInvalidInput()
-	{
+	public void testParseExtensionHandlesInvalidInput() {
 		assertThat(Extension.parse("1234567").isPresent(), is(false));
 		assertThat(Extension.parse("1234567v").isPresent(), is(false));
 		assertThat(Extension.parse("1234567a0").isPresent(), is(true));
@@ -26,17 +23,14 @@ public class ExtensionTest
 	}
 
 	@Test
-	public void testParseExtensionHandlesValidInput()
-	{
+	public void testParseExtensionHandlesValidInput() {
 		assertThat((W) Extension.parse("1234567w0").get(), isA(W.class));
 		assertThat((V) Extension.parse("1234567v0").get(), isA(V.class));
 	}
 
 	@Test
-	public void testSerialization() throws Exception
-	{
-		for (final ExtensionType type : ExtensionType.values())
-		{
+	public void testSerialization() throws Exception {
+		for (final ExtensionType type : ExtensionType.values()) {
 			final Extension extension = MasterSipid.of("2030302").deriveExtension(type, "10");
 
 			final byte[] bytes = SerializationUtils.serialize(extension);

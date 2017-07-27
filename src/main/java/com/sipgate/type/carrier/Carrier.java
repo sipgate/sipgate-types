@@ -1,7 +1,6 @@
 package com.sipgate.type.carrier;
 
-public enum Carrier
-{
+public enum Carrier {
 	NQ("D146", "nmsd"),
 	UMBRA("D248", "umbrad"),
 	PURPUR("D218", "purpurd"),
@@ -10,28 +9,22 @@ public enum Carrier
 	private String id;
 	private String system;
 
-	private Carrier(String id, String system)
-	{
+	private Carrier(String id, String system) {
 		this.id = id;
 		this.system = system;
 	}
 
-	public String getId()
-	{
+	public String getId() {
 		return id;
 	}
 
-	public String getSystem()
-	{
+	public String getSystem() {
 		return system;
 	}
 
-	public static Carrier parseSystem(String carrier)
-	{
-		for (final Carrier currentCarrier : values())
-		{
-			if (currentCarrier.getSystem().equalsIgnoreCase(carrier))
-			{
+	public static Carrier parseSystem(String carrier) {
+		for (final Carrier currentCarrier : values()) {
+			if (currentCarrier.getSystem().equalsIgnoreCase(carrier)) {
 				return currentCarrier;
 			}
 		}
@@ -39,12 +32,9 @@ public enum Carrier
 		return UNKNOWN;
 	}
 
-	public static Carrier parseCarrierId(String carrier)
-	{
-		for (final Carrier currentCarrier : values())
-		{
-			if (currentCarrier.getId().equalsIgnoreCase(carrier))
-			{
+	public static Carrier parseCarrierId(String carrier) {
+		for (final Carrier currentCarrier : values()) {
+			if (currentCarrier.getId().equalsIgnoreCase(carrier)) {
 				return currentCarrier;
 			}
 		}

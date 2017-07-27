@@ -1,8 +1,7 @@
 package com.sipgate.type.calls;
 
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
 import static org.apache.commons.lang3.StringUtils.defaultString;
-
-import java.nio.charset.StandardCharsets;
 
 import com.sipgate.type.extension.Extension;
 import org.apache.commons.codec.DecoderException;
@@ -10,8 +9,7 @@ import org.apache.commons.codec.binary.Hex;
 
 public class SessionId {
 
-	static final byte[] key =
-		("feOcden_yetlenJoaccebkelNiecactartum*gensonEicykEcMec=da"
+	static final byte[] key = ("feOcden_yetlenJoaccebkelNiecactartum*gensonEicykEcMec=da"
 			+ "nofyown8AvonedUgRovNugdegcockiejOt0ocBegrekmgav6leuzsi7"
 			+ "Wab5okEygEwQuitUtmymsiavEnsimIcmutIpivGawnOuAtlihontsta"
 			+ "DapgewIcByzajnovSibojmor4drefgaHebGeccedavLipgimOchAmWo"
@@ -26,7 +24,7 @@ public class SessionId {
 			+ "plytyachujCumicekMarfIgEcyofAfIbfitcashekVajbykMotvevFi"
 			+ "FebtyrumObseetDitlinadsIrElyevMiUbdavOpsEcDeHebyavyicBu"
 			+ "VekFindOcheituvQuondimougjebMovticwityibOocOgUrbiaHiUls")
-			.getBytes(StandardCharsets.ISO_8859_1);
+			.getBytes(ISO_8859_1);
 
 	private final String id;
 	private final Extension owner;
@@ -46,7 +44,8 @@ public class SessionId {
 		}
 
 		this.id = defaultString(split[2].replaceAll("-\\w+$", ""));
-		this.owner = Extension.parse(split[3]).orElseThrow(() -> new IllegalArgumentException("Could not parse Extension"));
+		this.owner =
+				Extension.parse(split[3]).orElseThrow(() -> new IllegalArgumentException("Could not parse Extension"));
 		this.tos = split[1];
 	}
 
@@ -68,11 +67,10 @@ public class SessionId {
 
 	private String encode(final String id, final Extension owner, final String tos) {
 		String combinedId =
-			Integer.toHexString(id.length() + owner.toString().length() + tos.length() + 2) + "$" + tos + "$" + id
-				+ "$"
-				+ owner;
+				Integer.toHexString(id.length() + owner.toString().length() + tos.length() + 2) + "$" + tos + "$" + id
+						+ "$" + owner;
 
-		byte[] plain = combinedId.getBytes(StandardCharsets.ISO_8859_1);
+		byte[] plain = combinedId.getBytes(ISO_8859_1);
 		byte[] encoded = new byte[plain.length];
 
 		for (int i = 0; i < plain.length; i++) {
@@ -92,7 +90,7 @@ public class SessionId {
 			decodedBytes[i] = (byte) (encodedBytes[i] ^ key[i % key.length]);
 		}
 
-		return new String(decodedBytes, StandardCharsets.ISO_8859_1);
+		return new String(decodedBytes, ISO_8859_1);
 	}
 
 	private byte[] decodeHex(String encoded) {

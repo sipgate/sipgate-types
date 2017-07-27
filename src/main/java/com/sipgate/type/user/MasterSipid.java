@@ -1,15 +1,14 @@
 package com.sipgate.type.user;
 
-import com.sipgate.type.extension.Extension;
-import com.sipgate.type.extension.ExtensionType;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import java.io.Serializable;
-import java.util.Optional;
-
 import static java.text.MessageFormat.format;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
+
+import com.sipgate.type.extension.Extension;
+import com.sipgate.type.extension.ExtensionType;
+import java.io.Serializable;
+import java.util.Optional;
 
 public class MasterSipid implements Serializable {
 
@@ -17,7 +16,7 @@ public class MasterSipid implements Serializable {
 	 * Convenient way to build a new MasterSipid instance.
 	 * The given input will be validated and result in an {@link IllegalArgumentException} if the check fails.
 	 *
-	 * MasterSipid is serializable, a json serializer/deserializer will be provided.
+	 * <p>MasterSipid is serializable, a json serializer/deserializer will be provided.
 	 *
 	 * @param masterSipid String representation of a mastersipid.
 	 * @return An MasterSipid instance
@@ -37,7 +36,7 @@ public class MasterSipid implements Serializable {
 	 * allows RestEasy automatic parameter unmarshalling.
 	 * This just wraps {@link #of(String masterSipid) of()}.
 	 *
-	 * MasterSipid is serializable, a json serializer/deserializer will be provided.
+	 * <p>MasterSipid is serializable, a json serializer/deserializer will be provided.
 	 *
 	 * @param masterSipid String representation of a mastersipid.
 	 * @return An MasterSipid instance
@@ -82,11 +81,11 @@ public class MasterSipid implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this, false);
+		return reflectionHashCode(this, false);
 	}
 
 	@Override
 	public boolean equals(Object that) {
-		return EqualsBuilder.reflectionEquals(this, that, false);
+		return reflectionEquals(this, that, false);
 	}
 }
