@@ -1,5 +1,7 @@
 package com.sipgate.type.calls;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 import java.nio.charset.StandardCharsets;
 
 import com.sipgate.type.extension.Extension;
@@ -43,7 +45,7 @@ public class SessionId {
 			throw new IllegalArgumentException("Could not parse encoded sessionId");
 		}
 
-		this.id = split[2];
+		this.id = defaultString(split[2].replaceAll("-\\w+$", ""));
 		this.owner = Extension.parse(split[3]).orElseThrow(() -> new IllegalArgumentException("Could not parse Extension"));
 		this.tos = split[1];
 	}
