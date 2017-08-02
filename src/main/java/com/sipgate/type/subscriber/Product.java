@@ -1,6 +1,7 @@
 package com.sipgate.type.subscriber;
 
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 import static org.apache.commons.lang3.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 
@@ -26,7 +27,7 @@ public enum Product {
 
 	public static Optional<Product> parse(final String product) {
 		return Stream.of(Product.values())
-				.filter(e -> e.key.equals(defaultIfBlank(product, TEAM.key).toLowerCase()))
+				.filter(e -> e.key.equals(defaultIfBlank(trimToEmpty(product), TEAM.key).toLowerCase()))
 				.findFirst();
 	}
 

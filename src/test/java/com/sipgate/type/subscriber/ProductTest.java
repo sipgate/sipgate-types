@@ -10,12 +10,17 @@ import org.junit.Test;
 public class ProductTest {
 	@Test
 	public void testParseShouldReturnTeam() {
+
 		assertThat(Product.parse("team").get(), is(TEAM));
+		assertThat(Product.parse("team   ").get(), is(TEAM));
+		assertThat(Product.parse("  team   ").get(), is(TEAM));
 	}
 
 	@Test
 	public void testParseEmptyStringShouldReturnTeam() {
+
 		assertThat(Product.parse("").get(), is(TEAM));
+		assertThat(Product.parse("    ").get(), is(TEAM));
 	}
 
 	@Test
