@@ -2,8 +2,6 @@ package com.sipgate.type.subscriber;
 
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
-import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
-import static org.apache.commons.lang3.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -21,7 +19,7 @@ public enum Product {
 
 	@Override
 	public String toString() {
-		return reflectionToString(this, SHORT_PREFIX_STYLE);
+		return this.key;
 	}
 
 
