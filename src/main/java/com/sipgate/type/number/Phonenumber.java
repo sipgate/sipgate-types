@@ -104,6 +104,14 @@ public abstract class Phonenumber implements Serializable {
 		}
 	}
 
+	public static Boolean isValid(String number) {
+		return parseSafe(number).isPresent();
+	}
+
+	public static Boolean isValid(String number, Domain domain) {
+		return parseSafe(number, domain).isPresent();
+	}
+
 	public String toLocal() {
 		return PhoneNumberUtil.getInstance().format(number, PhoneNumberFormat.NATIONAL).replaceAll("^\\+", "");
 	}
