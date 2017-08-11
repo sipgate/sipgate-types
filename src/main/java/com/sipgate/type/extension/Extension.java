@@ -1,9 +1,12 @@
 package com.sipgate.type.extension;
 
 import static java.text.MessageFormat.format;
+import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 
 import com.sipgate.type.user.MasterSipid;
 import java.io.Serializable;
+import java.text.MessageFormat;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -131,22 +134,39 @@ public abstract class Extension implements Serializable {
 		return masterSipid;
 	}
 
+	/**
+	 * @deprecated	This method returns the extension number only.
+	 * 				Replaced by
+	 * 				{@link #getExtensionNumber()}
+	 **/
+	@Deprecated
 	public String getId() {
 		return id;
 	}
 
+	public String getExtensionNumber() {
+		return id;
+	}
+
+	/**
+	 * @return the extension type and the extension number, e.g: w0
+	 */
+	public String getExtensionId() {
+		return format("{0}{1}", type.getKey(), id);
+	}
+
 	@Override
 	public String toString() {
-		return format("{0}{1}{2}", masterSipid, type.getKey(), id);
+		return format("{0}{1}", masterSipid, getExtensionId());
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false);
+		return reflectionEquals(this, obj, false);
 	}
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this, false);
+		return reflectionHashCode(this, false);
 	}
 }
