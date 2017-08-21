@@ -16,6 +16,7 @@ public class ExtensionTest {
 
 	@Test
 	public void testParseExtensionHandlesInvalidInput() {
+		assertThat(Extension.parse(null).isPresent(), is(false));
 		assertThat(Extension.parse("1234567").isPresent(), is(false));
 		assertThat(Extension.parse("1234567v").isPresent(), is(false));
 		assertThat(Extension.parse("1234567a0").isPresent(), is(true));

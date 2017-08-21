@@ -97,6 +97,10 @@ public abstract class Extension implements Serializable {
 	}
 
 	public static Optional<Extension> parse(String extension) {
+		if (extension == null) {
+			return Optional.empty();
+		}
+
 		final Matcher matcher = Pattern.compile("(\\d+)(\\D+)(\\d+)").matcher(extension);
 
 		if (!matcher.matches()) {
