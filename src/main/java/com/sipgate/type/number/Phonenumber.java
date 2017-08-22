@@ -3,6 +3,7 @@ package com.sipgate.type.number;
 import static com.sipgate.type.user.Domain.DE;
 import static java.text.MessageFormat.format;
 
+import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
@@ -101,6 +102,16 @@ public abstract class Phonenumber implements Serializable {
 
 			default:
 				return Optional.empty();
+		}
+	}
+
+	public static Boolean isValidE164(final String number) {
+		try {
+			PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
+			PhoneNumber phoneNumber = phoneNumberUtil.parse(number, null);
+			return phoneNumberUtil.isValidNumber(phoneNumber);
+		} catch (NumberParseException e) {
+			return false;
 		}
 	}
 

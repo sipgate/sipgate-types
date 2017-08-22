@@ -1,5 +1,6 @@
 package com.sipgate.type.number;
 
+import static com.sipgate.type.number.Phonenumber.isValidE164;
 import static com.sipgate.type.number.Phonenumber.of;
 import static com.sipgate.type.number.Phonenumber.parseSafe;
 import static com.sipgate.type.user.Domain.CO_UK;
@@ -7,7 +8,9 @@ import static com.sipgate.type.user.Domain.UNKNOWN;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.instanceOf;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import com.sipgate.type.user.Domain;
 import org.apache.commons.lang3.SerializationUtils;
@@ -115,5 +118,17 @@ public class PhonenumberTest {
 
 		assertThat(SerializationUtils.deserialize(bytes), is(number));
 
+	}
+
+	@Test
+	public void testIsValidE164() throws Exception {
+		assertTrue(isValidE164("+492116355550"));
+		assertTrue(isValidE164("+442072725777"));
+		assertTrue(isValidE164("+48 22 853 00 07"));
+
+		assertFalse(isValidE164(null));
+		assertFalse(isValidE164(""));
+		assertFalse(isValidE164("442072725777"));
+		assertFalse(isValidE164("02116355550"));
 	}
 }
