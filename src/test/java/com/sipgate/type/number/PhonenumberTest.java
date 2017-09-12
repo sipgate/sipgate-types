@@ -32,9 +32,19 @@ public class PhonenumberTest {
 	}
 
 	@Test
+	public void testParserSipgateMobileNumber() {
+		assertThat(of("015797788135").toString(), is("4915797788135"));
+		assertThat(of("004915797788135").toString(), is("4915797788135"));
+		assertThat(of("+4915797788135").toString(), is("4915797788135"));
+		assertThat(of("4915797788135").toString(), is("4915797788135"));
+	}
+
+	@Test
 	public void testParserShouldGenerateGermanNumberObject() throws Exception {
 		assertThat(of("492074228400"), instanceOf(GermanPhonenumber.class));
 		assertThat(of("492074228400", Domain.DE), instanceOf(GermanPhonenumber.class));
+		assertThat(of("4915797788135"), instanceOf(GermanPhonenumber.class));
+		assertThat(of("4915797788135", Domain.DE), instanceOf(GermanPhonenumber.class));
 	}
 
 	@Test
@@ -42,6 +52,7 @@ public class PhonenumberTest {
 		assertThat(of("02089939152").getCountryCode(), is("49"));
 		assertThat(of("04922579").getCountryCode(), is("49"));
 		assertThat(of("020656254").getCountryCode(), is("49"));
+		assertThat(of("015797788135").getCountryCode(), is("49"));
 	}
 
 	@Test
@@ -49,6 +60,7 @@ public class PhonenumberTest {
 		assertThat(of("02089939152").getAreaCode(), is("208"));
 		assertThat(of("04922579").getAreaCode(), is("4922"));
 		assertThat(of("020656254").getAreaCode(), is("2065"));
+		assertThat(of("015797788135").getAreaCode(), is("1579"));
 	}
 
 	@Test
@@ -56,12 +68,14 @@ public class PhonenumberTest {
 		assertThat(of("02089939152").getSubscriberNumber(), is("9939152"));
 		assertThat(of("04922579").getSubscriberNumber(), is("579"));
 		assertThat(of("020656254").getSubscriberNumber(), is("6254"));
+		assertThat(of("015797788135").getSubscriberNumber(), is("7788135"));
 	}
 
 	@Test
 	public void testToLocal() throws Exception {
 		assertThat(of("02089939152").toLocal(), is("0208 9939152"));
 		assertThat(of("04922579").toLocal(), is("04922 579"));
+		assertThat(of("015797788135").toLocal(), is("01579 7788135"));
 	}
 
 	@Test
