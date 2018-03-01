@@ -12,7 +12,8 @@ public enum Header {
 	AUTH_REQUIRED("X-Sipgate-Auth-Required"),
 	AUTH_SCOPE("X-Sipgate-Auth-Scope"),
 	CLIENT_IP_ADDRESS("X-Sipgate-Client-Ip-Address"),
-	ADMIN("X-Sipgate-Admin");
+	ADMIN("X-Sipgate-Admin"),
+	NQ("X-Sipgate-NQ");
 
 	private final String key;
 
