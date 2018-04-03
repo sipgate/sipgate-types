@@ -86,11 +86,13 @@ public class PhonenumberTest {
 	@Test
 	public void testParserShouldGenerateBritishNumberObject() throws Exception {
 		assertThat(of("442074228400", CO_UK), instanceOf(BritishPhonenumber.class));
+		assertThat(of("442072663311", CO_UK), instanceOf(BritishPhonenumber.class));
 	}
 
 	@Test
 	public void testParsingBritishNumber() throws Exception {
 		assertThat(of("442074228400", CO_UK).toString(), is("442074228400"));
+		assertThat(of("442072663311", CO_UK).toString(), is("442072663311"));
 		assertThat(of("02074228400", CO_UK).toString(), is("442074228400"));
 		assertThat(of("02074228400", CO_UK).toLocal(), is("020 7422 8400"));
 	}
