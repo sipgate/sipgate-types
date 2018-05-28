@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Optional;
 
 /**
- * Convenience class bundling {@link W} and {@link Domain}
+ * Convenience class bundling {@link W} and {@link Domain}.
  */
 public class Webuser implements Serializable {
 	private final W webuserId;
