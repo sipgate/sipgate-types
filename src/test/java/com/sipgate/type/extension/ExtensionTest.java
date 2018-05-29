@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.sipgate.type.user.MasterSipid;
 import java.util.Arrays;
+import java.util.Optional;
 import org.apache.commons.lang3.SerializationUtils;
 import org.junit.Test;
 
@@ -53,5 +54,14 @@ public class ExtensionTest {
 		Arrays.stream(ExtensionType.values())
 				.map(extensionType -> Extension.build(MasterSipid.of("1234567"), extensionType, "-1"))
 				.forEach(extension -> assertFalse(Extension.isA(extension.toString(), extension.getType())));
+	}
+
+	@Test
+	public void testParseToType() {
+		assertThat(Extension.parseA("1234567a0").get(), isA(A.class));
+		assertThat(Extension.parseA("1234567w0"), is(Optional.empty()));
+		assertThat(Extension.parseA("foobar"), is(Optional.empty()));
+		assertThat(Extension.parseA(""), is(Optional.empty()));
+		assertThat(Extension.parseA(null), is(Optional.empty()));
 	}
 }

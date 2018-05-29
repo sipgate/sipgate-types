@@ -6,12 +6,10 @@ import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCod
 
 import com.sipgate.type.user.MasterSipid;
 import java.io.Serializable;
-import java.text.MessageFormat;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public abstract class Extension implements Serializable {
 	private final MasterSipid masterSipid;
@@ -116,13 +114,74 @@ public abstract class Extension implements Serializable {
 		final String extensionId = matcher.group(3);
 		final String masterSipidKey = matcher.group(1);
 
-		final Optional<MasterSipid> masterSipid = MasterSipid.parse(masterSipidKey);
+		return MasterSipid.parse(masterSipidKey)
+				.map(masterSipid -> masterSipid.deriveExtension(type.get(), extensionId));
+	}
 
-		if (masterSipid.isPresent()) {
-			return Optional.of(masterSipid.get().deriveExtension(type.get(), extensionId));
-		}
+	public static Optional<A> parseA(String extension) {
+		return safeCast(A.class).apply(parse(extension));
+	}
 
-		return Optional.empty();
+	public static Optional<C> parseC(String extension) {
+		return safeCast(C.class).apply(parse(extension));
+	}
+
+	public static Optional<E> parseE(String extension) {
+		return safeCast(E.class).apply(parse(extension));
+	}
+
+	public static Optional<F> parseF(String extension) {
+		return safeCast(F.class).apply(parse(extension));
+	}
+
+	public static Optional<G> parseG(String extension) {
+		return safeCast(G.class).apply(parse(extension));
+	}
+
+	public static Optional<H> parseH(String extension) {
+		return safeCast(H.class).apply(parse(extension));
+	}
+
+	public static Optional<I> parseI(String extension) {
+		return safeCast(I.class).apply(parse(extension));
+	}
+
+	public static Optional<P> parseP(String extension) {
+		return safeCast(P.class).apply(parse(extension));
+	}
+
+	public static Optional<Q> parseQ(String extension) {
+		return safeCast(Q.class).apply(parse(extension));
+	}
+
+	public static Optional<R> parseR(String extension) {
+		return safeCast(R.class).apply(parse(extension));
+	}
+
+	public static Optional<T> parseT(String extension) {
+		return safeCast(T.class).apply(parse(extension));
+	}
+
+	public static Optional<V> parseV(String extension) {
+		return safeCast(V.class).apply(parse(extension));
+	}
+
+	public static Optional<W> parseW(String extension) {
+		return safeCast(W.class).apply(parse(extension));
+	}
+
+	public static Optional<X> parseX(String extension) {
+		return safeCast(X.class).apply(parse(extension));
+	}
+
+	public static Optional<Y> parseY(String extension) {
+		return safeCast(Y.class).apply(parse(extension));
+	}
+
+	private static <T extends Extension> Function<Optional<Extension>, Optional<T>> safeCast(Class<T> clazz) {
+		return (Optional<Extension> maybeExtension) -> maybeExtension
+				.filter(e -> clazz.isAssignableFrom(e.getClass()))
+				.map(clazz::cast);
 	}
 
 	public static boolean isA(final String extension, final ExtensionType extensionType) {
