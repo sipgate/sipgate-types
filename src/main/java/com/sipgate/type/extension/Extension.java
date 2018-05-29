@@ -207,6 +207,9 @@ public abstract class Extension implements Serializable {
 		return id;
 	}
 
+	/**
+	 * @return the extension number, e.g: 0
+	 */
 	public String getExtensionNumber() {
 		return id;
 	}
@@ -218,9 +221,19 @@ public abstract class Extension implements Serializable {
 		return format("{0}{1}", type.getKey(), id);
 	}
 
+	/**
+	 * @return the extension type and the extension number, e.g: 1234567w0
+	 */
+	public String getFullExtensionId() {
+		return format("{0}{1}", masterSipid, getExtensionId());
+	}
+
+	/**
+	 * @return the extension type and the extension number, e.g: 1234567w0
+	 */
 	@Override
 	public String toString() {
-		return format("{0}{1}", masterSipid, getExtensionId());
+		return getFullExtensionId();
 	}
 
 	@Override
