@@ -40,6 +40,10 @@ public class Webuser implements Serializable {
 		return domain;
 	}
 
+	public User toUser() {
+		return User.of(webuserId.getMasterSipid(), domain);
+	}
+
 	@Override
 	public String toString() {
 		return format("{0} ({1})", webuserId, domain);
