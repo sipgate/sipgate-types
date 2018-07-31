@@ -20,12 +20,13 @@ import java.util.Optional;
 /**
  * Represents any phonenumber and is a convenient object to grant valid phonenumbers and ass them pass phonenumbers in a
  * typesafe way. <br>
- * Phonenumber objects can be instantiated using several static buider methods:
+ * Phonenumber objects can be instantiated using several static builder methods:
+ * <ul>
  * <li>{@link #of(String)}</li>
  * <li>{@link #of(String, Domain)}</li>
  * <li>{@link #parseSafe(String)}</li>
  * <li>{@link #parseSafe(String, Domain)}</li>
- * TODO: Should implement Serializable
+ * </ul>
  */
 public abstract class Phonenumber implements Serializable {
 	private final PhoneNumber number;

@@ -201,6 +201,7 @@ public abstract class Extension implements Serializable {
 	 * @deprecated	This method returns the extension number only.
 	 * 				Replaced by
 	 * 				{@link #getExtensionNumber()}
+	 * @return id of this extension
 	 **/
 	@Deprecated
 	public String getId() {
