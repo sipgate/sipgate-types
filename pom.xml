@@ -7,7 +7,32 @@
 	<artifactId>sipgate-types</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>sipgate-types</name>
+	<description>Provides a set of general, framework agnostic, strongly typed entities that represent common "things" describing the sipgate domain.</description>
+	<url>https://github.com/sipgate/sipgate-types</url>
 
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>musil@sipgate.de</id>
+			<name>Clemens von Musil</name>
+			<email>musil@sipgate.de</email>
+			<url>https://www.sipgate.de</url>
+			<organization>sipgate GmbH</organization>
+			<organizationUrl>https://www.sipgate.de</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>Europe/Berlin</timezone>
+		</developer>
+	</developers>
 
 	<scm>
 		<connection>scm:git:git@github.com:sipgate/sipgate-types.git</connection>
