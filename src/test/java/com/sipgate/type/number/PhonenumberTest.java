@@ -5,9 +5,9 @@ import static com.sipgate.type.number.Phonenumber.of;
 import static com.sipgate.type.number.Phonenumber.parseSafe;
 import static com.sipgate.type.user.Domain.CO_UK;
 import static com.sipgate.type.user.Domain.UNKNOWN;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -98,6 +98,13 @@ public class PhonenumberTest {
 	}
 
 	@Test
+	public void testParsingInternationslNumber() throws Exception {
+		assertThat(of("+972559163653").getCountryCode(), is("972"));
+		assertThat(of("+972559163653").getAreaCode(), is("55"));
+		assertThat(of("+972559163653").getSubscriberNumber(), is("9163653"));
+	}
+
+	@Test
 	public void testBritishNumberToLocal() throws Exception {
 		assertThat(of("02074228400", CO_UK).toLocal(), is("020 7422 8400"));
 	}
@@ -122,7 +129,8 @@ public class PhonenumberTest {
 		assertThat(of("02074228400", CO_UK).getSubscriberNumber(), is("74228400"));
 	}
 
-	@Test(expected = IllegalArgumentException.class) public void testParsingNumberWithUnknownLocal() throws Exception {
+	@Test(expected = IllegalArgumentException.class)
+	public void testParsingNumberWithUnknownLocal() throws Exception {
 		of("02074228400", UNKNOWN);
 	}
 
@@ -133,7 +141,6 @@ public class PhonenumberTest {
 		final byte[] bytes = SerializationUtils.serialize(number);
 
 		assertThat(SerializationUtils.deserialize(bytes), is(number));
-
 	}
 
 	@Test
