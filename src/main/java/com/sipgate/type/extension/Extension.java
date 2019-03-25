@@ -198,6 +198,8 @@ public abstract class Extension implements Serializable {
 	}
 
 	/**
+	 * Return this extensions id.
+	 *
 	 * @deprecated	This method returns the extension number only.
 	 * 				Replaced by
 	 * 				{@link #getExtensionNumber()}
@@ -208,29 +210,30 @@ public abstract class Extension implements Serializable {
 		return id;
 	}
 
+
 	/**
-	 * @return the extension number, e.g: 0
+	 * Returns the extension number, e.g: 0
 	 */
 	public String getExtensionNumber() {
 		return id;
 	}
 
 	/**
-	 * @return the extension type and the extension number, e.g: w0
+	 * Returns the extension type and the extension number, e.g: w0
 	 */
 	public String getExtensionId() {
 		return format("{0}{1}", type.getKey(), id);
 	}
 
 	/**
-	 * @return the extension type and the extension number, e.g: 1234567w0
+	 * Returns the extension type and the extension number, e.g: 1234567w0
 	 */
 	public String getFullExtensionId() {
 		return format("{0}{1}", masterSipid, getExtensionId());
 	}
 
 	/**
-	 * @return the extension type and the extension number, e.g: 1234567w0
+	 * Returns the extension type and the extension number, e.g: 1234567w0
 	 */
 	@Override
 	public String toString() {
