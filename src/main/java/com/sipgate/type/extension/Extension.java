@@ -184,6 +184,10 @@ public abstract class Extension implements Serializable {
 				.map(clazz::cast);
 	}
 
+	public static boolean isA(final Extension extension, final ExtensionType extensionType) {
+		return extension != null && isA(extension.getFullExtensionId(), extensionType);
+	}
+
 	public static boolean isA(final String extension, final ExtensionType extensionType) {
 		final Optional<Extension> maybeExtension = Extension.parse(extension);
 		return maybeExtension.isPresent() && maybeExtension.get().getType().equals(extensionType);
