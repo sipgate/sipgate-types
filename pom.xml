@@ -4,7 +4,7 @@
 
 	<groupId>com.sipgate</groupId>
 	<artifactId>sipgate-types</artifactId>
-	<version>1.0.5</version>
+	<version>1.0.6-SNAPSHOT</version>
 	<name>sipgate-types</name>
 	<description>Provides a set of general, framework agnostic, strongly typed entities that represent common "things" describing the sipgate domain.</description>
 	<url>https://github.com/sipgate/sipgate-types</url>
@@ -37,7 +37,7 @@
 		<connection>scm:git:git@github.com:sipgate/sipgate-types.git</connection>
 		<developerConnection>scm:git:git@github.com:sipgate/sipgate-types.git</developerConnection>
 		<url>https://github.com/sipgate/sipgate-types</url>
-		<tag>sipgate-types-1.0.5</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<dependencies>
